@@ -364,4 +364,3 @@ Put the two links at the top of this README.
 - Refresh tokens are kept in the browser's local storage for simplicity. An httpOnly cookie would be safer for production.
 - Payments are not integrated. The fee is calculated and stored on checkout only.
 - Reserved bookings that nobody checks in are not expired automatically; the manager or driver cancels them.
-# Web-Dev-III-Capstone-Project

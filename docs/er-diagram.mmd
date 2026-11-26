@@ -1,0 +1,47 @@
+erDiagram
+    USER ||--o{ LOT : "manages"
+    USER ||--o{ RESERVATION : "books"
+    LOT ||--o{ SLOT : "contains"
+    LOT ||--o{ RESERVATION : "receives"
+    SLOT ||--o{ RESERVATION : "is booked in"
+
+    USER {
+        ObjectId _id PK
+        string name
+        string email UK
+        string password "bcrypt hash"
+        string role "driver | manager | admin"
+        string phone
+        boolean isActive
+        string[] refreshTokenHashes "SHA-256 of refresh tokens"
+    }
+    LOT {
+        ObjectId _id PK
+        string name
+        string address
+        string city "indexed"
+        number ratePerHour
+        ObjectId manager FK "indexed"
+        boolean isActive
+    }
+    SLOT {
+        ObjectId _id PK
+        ObjectId lot FK
+        string number "unique with lot"
+        string type "car | bike | ev"
+        boolean isActive
+    }
+    RESERVATION {
+        ObjectId _id PK
+        ObjectId user FK
+        ObjectId lot FK
+        ObjectId slot FK
+        string vehicleNumber
+        date startTime
+        date endTime
+        string status "reserved | active | completed | cancelled"
+        date entryTime
+        date exitTime
+        number billedHours
+        number fee
+    }
